@@ -2,12 +2,17 @@
   "name": "@daysnap/vue-use-monorepo",
   "version": "1.0.0",
   "private": true,
-  "description": "",
-  "main": "index.js",
+  "description": "vue hooks",
+  "packageManager": "pnpm@8.7.1",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "daysnap",
+    "hooks",
+    "use",
+    "vue"
+  ],
   "author": "woshiajuana",
   "license": "MIT"
 }

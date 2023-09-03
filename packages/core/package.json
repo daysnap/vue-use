@@ -8,11 +8,16 @@
   },
   "keywords": [
     "daysnap",
+    "core",
     "hooks",
     "use",
     "vue"
   ],
   "author": "chenzhigang <979703986@qq.com>",
   "homepage": "https://github.com/daysnap/vue-use#readme",
-  "license": "MIT"
+  "license": "MIT",
+  "peerDependencies": {
+    "vue": ">=3.0.0",
+    "vue-router": "^4.2.4"
+  }
 }
