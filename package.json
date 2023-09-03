@@ -14,5 +14,9 @@
     "vue"
   ],
   "author": "woshiajuana",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "rimraf": "^5.0.1",
+    "typescript": "^5.2.2"
+  }
 }

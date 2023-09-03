@@ -4,7 +4,12 @@
   "description": "daysnap vue hooks",
   "main": "src/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "gen": "plop --plopfile ./scripts/gen.js --force",
+    "del": "plop --plopfile ./scripts/del.js --force",
+    "entry": "plop --plopfile ./scripts/entry.js --force",
+    "clean": "rimraf ./es",
+    "build": "npm run clean && tsc -p ./tsconfig.json",
+    "release": "npm run entry && npm run build && dsc publish --pnpm -t && dsc sync"
   },
   "keywords": [
     "daysnap",
@@ -13,11 +18,22 @@
     "use",
     "vue"
   ],
+  "files": [
+    "es",
+    "typings"
+  ],
   "author": "chenzhigang <979703986@qq.com>",
   "homepage": "https://github.com/daysnap/vue-use#readme",
   "license": "MIT",
   "peerDependencies": {
     "vue": ">=3.0.0",
     "vue-router": "^4.2.4"
+  },
+  "devDependencies": {
+    "plop": "^3.1.2",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@daysnap/utils": ">=0.0.62"
   }
 }
