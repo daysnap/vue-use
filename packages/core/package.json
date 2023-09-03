@@ -22,6 +22,7 @@
     "es",
     "typings"
   ],
+  "sideEffects": false,
   "author": "chenzhigang <979703986@qq.com>",
   "homepage": "https://github.com/daysnap/vue-use#readme",
   "license": "MIT",
@@ -30,6 +31,7 @@
     "vue-router": "^4.2.4"
   },
   "devDependencies": {
+    "node-dir": "^0.1.17",
     "plop": "^3.1.2",
     "typescript": "^5.2.2"
   },
