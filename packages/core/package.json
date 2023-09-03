@@ -1,0 +1,18 @@
+{
+  "name": "@daysnap/vue-use",
+  "version": "0.0.1",
+  "description": "daysnap vue hooks",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "daysnap",
+    "hooks",
+    "use",
+    "vue"
+  ],
+  "author": "chenzhigang <979703986@qq.com>",
+  "homepage": "https://github.com/daysnap/vue-use#readme",
+  "license": "MIT"
+}
