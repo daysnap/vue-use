@@ -12,6 +12,7 @@
     "format:core": "pnpm -C ./packages/core format",
     "build": "npm run build:core",
     "build:core": "pnpm -C ./packages/core build",
+    "release": "npm run release:core",
     "release:core": "pnpm -C ./packages/core release"
   },
   "keywords": [
