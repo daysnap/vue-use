@@ -13,6 +13,7 @@ interface UseTransitionNameState {
 }
 
 const KEY = '$$useTransitionName__state'
+
 const get = () => {
   let res: UseTransitionNameState | undefined
   try {

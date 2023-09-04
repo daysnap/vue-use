@@ -8,6 +8,8 @@
     "core:gen": "pnpm -C ./packages/core gen",
     "core:del": "pnpm -C ./packages/core del",
     "core:entry": "pnpm -C ./packages/core entry",
+    "format": "npm run format:core",
+    "format:core": "pnpm -C ./packages/core format",
     "build": "npm run build:core",
     "build:core": "pnpm -C ./packages/core build",
     "release:core": "pnpm -C ./packages/core release"

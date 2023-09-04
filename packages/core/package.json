@@ -23,6 +23,7 @@
     "build:es": "npm run clean:es && tsc -p ./tsconfig-esm.json",
     "build:lib": "npm run clean:lib && tsc -p ./tsconfig.json",
     "build": "npm run entry && npm run build:es && npm run build:lib",
+    "format": "prettier --write src/",
     "release": "npm run entry && npm run build && dsc publish --pnpm -t && dsc sync"
   },
   "keywords": [
