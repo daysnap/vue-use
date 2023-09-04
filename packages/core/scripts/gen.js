@@ -30,7 +30,7 @@ module.exports = (plop) => {
       {
         type: 'add',
         path: rc('{{ camelCase name }}/index.md'),
-        templateFile: rt('README.hbs'),
+        templateFile: rt('md.hbs'),
       },
       {
         type: 'add',
