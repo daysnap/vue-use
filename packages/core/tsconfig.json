@@ -1,25 +1,18 @@
 {
   "compilerOptions": {
-    "isolatedModules": true,
-    "preserveValueImports": true,
-    "ignoreDeprecations": "5.0",
-    "target": "esnext",
-    "useDefineForClassFields": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "strict": true,
+    "baseUrl": "./",
     "jsx": "preserve",
-    "outDir": "es",
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
+    "strict": true,
+    "target": "ES2015",
+    "module": "CommonJS",
+    "skipLibCheck": true,
     "declaration": true,
-    "lib": ["esnext", "dom"],
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"],
-      "src/*": ["src/*"]
-    },
-    "skipLibCheck": true
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "outDir": "./lib"
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "typings/**/*.d.ts"]
+  "include": [
+    "src/**/*.ts",
+  ],
+  "exclude": ["node_modules"]
 }
