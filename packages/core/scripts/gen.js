@@ -32,11 +32,11 @@ module.exports = (plop) => {
         path: rc('{{ camelCase name }}/index.md'),
         templateFile: rt('md.hbs'),
       },
-      {
-        type: 'add',
-        path: rc('{{ camelCase name }}/demo.vue'),
-        templateFile: rt('demo.hbs'),
-      },
+      // {
+      //   type: 'add',
+      //   path: rc('{{ camelCase name }}/demo.vue'),
+      //   templateFile: rt('demo.hbs'),
+      // },
       {
         type: 'end',
       },
