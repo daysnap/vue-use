@@ -32,7 +32,6 @@ export function useKeepPosition(options?: UseKeepPositionOptions) {
         const setScroll = () => {
           target.scrollLeft = scrollLeft
           target.scrollTop = scrollTop
-          console.log(target.scrollTop)
         }
         setScroll()
       }
