@@ -1,0 +1,64 @@
+html,
+body {
+  @extend %pr;
+  @extend %oh;
+  @extend %pr;
+  @extend %w100;
+  @extend %h100;
+  background-color: #f5f5f5;
+}
+
+#app {
+  font-size: j(16);
+  height: 100vh;
+}
+
+.c-h10{
+  height: j(10);
+}
+
+.c-pr {
+  @extend %pr;
+}
+
+.c-button {
+  font-size: j(16);
+  &.van-button {
+    @extend %db;
+    @extend %ma;
+    width: j(310);
+  }
+  &.is-text{
+    background-color: transparent;
+    border: none;
+  }
+}
+
+.c-fixed-bottom {
+  @extend %pf;
+  @extend %b0;
+  @extend %l0;
+  @extend %w100;
+  @extend %bsb;
+  padding: j(5) j(15);
+  background-color: #fff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+  &:after {
+    @extend %w100;
+    @extend %db;
+    content: '';
+    padding-bottom: constant(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .c-button {
+    &.van-button {
+      margin-top: 0;
+    }
+  }
+}
+
+.c-ios-seat {
+  @extend %w100;
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+}

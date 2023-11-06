@@ -1,0 +1,9 @@
+:root {
+  // custom css var
+}
+
+// 这里覆盖 vant 相关样式变量
+// docs see https://vant-ui.github.io/vant/#/zh-CN/config-provider
+:root:root {
+  --van-primary-color: rgb(235, 30, 35);
+}
