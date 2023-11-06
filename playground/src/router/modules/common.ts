@@ -1,6 +1,6 @@
-import type { RouteRecordRaw } from 'vue-router'
+import { defineRoutes } from '@/router/defineRoutes'
 
-export default [
+export default defineRoutes([
   {
     path: '/',
     name: 'MainView',
@@ -17,7 +17,7 @@ export default [
         path: '/demo',
         name: 'DemoView',
         component: () => import('@/views/demo/DemoView.vue'),
-        meta: { title: '我的', requiresAuth: 0, icon: 'manager-o', iconSelected: 'manager' },
+        meta: { title: '案列', requiresAuth: 0, icon: 'video-o', iconSelected: 'video' },
       },
     ],
   },
@@ -25,4 +25,4 @@ export default [
   // 404
   // https://router.vuejs.org/zh/guide/essentials/dynamic-matching.html
   { path: '/:pathMatch(.*)*', name: '404', redirect: '/' },
-] as RouteRecordRaw[]
+])
