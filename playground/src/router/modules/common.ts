@@ -14,9 +14,9 @@ export default [
         meta: { title: '首页', requiresAuth: 0, icon: 'wap-home-o', iconSelected: 'wap-home' },
       },
       {
-        path: '/mine',
-        name: 'MineView',
-        component: () => import('@/views/mine/MineView.vue'),
+        path: '/demo',
+        name: 'DemoView',
+        component: () => import('@/views/demo/DemoView.vue'),
         meta: { title: '我的', requiresAuth: 0, icon: 'manager-o', iconSelected: 'manager' },
       },
     ],
