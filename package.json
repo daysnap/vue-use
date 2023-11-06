@@ -5,6 +5,8 @@
   "description": "vue hooks",
   "packageManager": "pnpm@8.7.1",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "clean": "rimraf --glob **/node_modules",
     "core:gen": "pnpm -C ./packages/core gen",
     "core:del": "pnpm -C ./packages/core del",
     "core:entry": "pnpm -C ./packages/core entry",
