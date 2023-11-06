@@ -16,6 +16,7 @@ const setState = (state: UseKeepAliveState[], ms = 0) => {
   // fix 解决 vite 热更新触发多次更新
   if (JSON.stringify(state) !== JSON.stringify(keepAliveList.value)) {
     // fix 解决 transform keep-alive bug 问题
+
     setTimeout(() => (keepAliveList.value = state), ms)
   }
 }
