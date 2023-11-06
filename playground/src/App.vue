@@ -6,10 +6,10 @@
       </KeepAlive>
     </Transition>
   </RouterView>
-  <!-- <DebugPanel>
+  <DebugPanel>
     <p>includes: {{ includes }}</p>
     <p>transitionName: {{ transitionName }}</p>
-  </DebugPanel> -->
+  </DebugPanel>
 </template>
 
 <script setup lang="ts">
