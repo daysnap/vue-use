@@ -1,5 +1,7 @@
 <template>
-  <HorView :left-arrow="false"></HorView>
+  <HorView>
+    <p>跳转方式 => {{ $route.params.method }}</p>
+  </HorView>
 </template>
 
 <script setup lang="ts"></script>
