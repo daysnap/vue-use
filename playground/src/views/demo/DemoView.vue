@@ -4,7 +4,9 @@
     <input v-model="value" />
     <p>value => {{ value }}</p>
     <br />
-    <RouterLink to="/demo/use-keep-alive">去 UseKeepAlive</RouterLink>
+    <RouterLink to="/demo/use-keep-alive">push 去 UseKeepAlive</RouterLink>
+    <br />
+    <RouterLink to="/demo/use-keep-alive" replace>replace 去 UseKeepAlive</RouterLink>
   </HorView>
 </template>
 

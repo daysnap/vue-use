@@ -8,14 +8,14 @@
   </RouterView>
   <DebugPanel>
     <p>includes: {{ includes }}</p>
-    <p>transitionName: {{ transitionName }}</p>
+    <!-- <p>transitionName: {{ transitionName }}</p> -->
   </DebugPanel>
 </template>
 
 <script setup lang="ts">
-  import { useTransitionName, useKeepAliveByPosition } from '@daysnap/vue-use'
+  import { useTransitionName, useKeepAlive } from '@daysnap/vue-use'
 
-  const { includes } = useKeepAliveByPosition(false)
+  const { includes } = useKeepAlive(false)
 
   const transitionName = useTransitionName({
     enterClass: 'slide-plus-left',

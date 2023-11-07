@@ -1,0 +1,34 @@
+.slide-plus-left-enter-active,
+.slide-plus-left-leave-active,
+.slide-plus-right-enter-active,
+.slide-plus-right-leave-active {
+  transition: transform 0.3s;
+  position: absolute !important;
+  width: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.slide-plus-left-leave-active,
+.slide-plus-right-enter-active{
+  z-index: 1;
+}
+
+.slide-plus-left-enter-active,
+.slide-plus-right-leave-active{
+  z-index: 10;
+}
+
+.slide-plus-left-enter-from,
+.slide-plus-right-leave-to{
+  transform: translateX(100%);
+}
+
+.slide-plus-left-leave-to,
+.slide-plus-right-enter-from {
+  transform: translateX(-30%);
+}
