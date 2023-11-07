@@ -51,15 +51,11 @@ export function useKeepAlive(options?: UseKeepAliveOptions) {
     )
 
     const ms = isNumber(options) ? options : 0
-    console.log('ms111 => ', ms, options, isNumber(options))
-
     watch(
       () => keepAliveList.value,
       (nv, ov) => {
         if (JSON.stringify(nv) !== JSON.stringify(ov)) {
-          console.log('11 => ', ms, options)
           setTimeout(() => {
-            console.log('22 => ', ms, options)
             includes.value = keepAliveList.value?.map((item) => item.name) ?? []
           }, ms)
         }
