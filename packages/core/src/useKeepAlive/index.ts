@@ -6,6 +6,7 @@ export interface UseKeepAliveState {
   name: string
   position: number
   mode: 'auto' | 'custom'
+  relations?: string[] // 关联的路由 如果是一个路由有子路由 则需要关联下子路由name
 }
 export type UseKeepAliveOptions = Partial<Omit<UseKeepAliveState, 'position'>> | boolean
 
@@ -22,15 +23,26 @@ export function useKeepAlive(options?: UseKeepAliveOptions) {
     const route = useRoute()
     watch(
       () => ({ ...route }),
-      (_, from) => {
+      (to, from) => {
         const { position, replaced, scroll } = getHistoryState()
 
         keepAliveList.value = (keepAliveList.value ?? []).filter((item) => {
-          const { mode, name } = item
+          const { mode, relations } = item
+          // 自定义
           if (mode === 'custom') {
             return true
           }
+
+          // replace
           if (replaced && scroll === false) {
+            // 有关联的 route
+            if (relations?.length) {
+              const formName = from.name as string
+              if (relations.includes(formName)) {
+                const toName = to.name as string
+                return relations.includes(toName)
+              }
+            }
             return position > item.position
           }
           return position >= item.position
@@ -42,8 +54,9 @@ export function useKeepAlive(options?: UseKeepAliveOptions) {
       () => keepAliveList.value,
       (nv, ov) => {
         if (JSON.stringify(nv) !== JSON.stringify(ov)) {
-          includes.value = keepAliveList.value?.map((item) => item.name) ?? []
-          console.log('监听 => ', includes.value.join(' '))
+          setTimeout(() => {
+            includes.value = keepAliveList.value?.map((item) => item.name) ?? []
+          }, 300)
         }
       },
       {
@@ -54,12 +67,12 @@ export function useKeepAlive(options?: UseKeepAliveOptions) {
 
   if (!isBoolean(options)) {
     const { meta, ...rest } = useRoute()
-    const { name, mode } = Object.assign({ mode: 'auto' } as const, rest, meta, options)
+    const { name, mode, relations } = Object.assign({ mode: 'auto' } as const, rest, meta, options)
     const { position = 0 } = getHistoryState()
     if (name) {
       keepAliveList.value = [
         ...(keepAliveList.value ?? []).filter((item) => item.name !== name),
-        { position, name, mode },
+        { position, name, mode, relations },
       ]
     }
   }

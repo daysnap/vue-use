@@ -26,7 +26,7 @@
   import { useKeepAlive } from '@daysnap/vue-use'
 
   // 支持 keep-alive
-  useKeepAlive({ name: 'MainView' })
+  useKeepAlive({ name: 'MainView', relations: ['DemoView', 'HomeView'] })
 
   const router = useRouter()
   const computedTabbarRoutes = computed(() => {
