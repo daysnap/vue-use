@@ -18,17 +18,7 @@
     "release": "npm run entry && npm run build && dsc publish --pnpm -t && dsc sync"
   },
   "publishConfig": {
-    "main": "lib/index.js",
-    "module": "es/index.js",
-    "types": "es/index.d.ts",
-    "exports": {
-      ".": {
-        "types": "./es/index.d.ts",
-        "import": "./es/index.js",
-        "require": "./lib/index.js"
-      },
-      "./*": "./*"
-    },
+    "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
   "keywords": [
@@ -46,10 +36,6 @@
   "author": "chenzhigang <979703986@qq.com>",
   "homepage": "https://github.com/daysnap/vue-use#readme",
   "license": "MIT",
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
-  },
   "peerDependencies": {
     "vue": ">=3.0.0",
     "vue-router": ">=4.2.4"
@@ -60,6 +46,6 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@daysnap/utils": ">=0.0.62"
+    "@daysnap/utils": "^0.0.66"
   }
 }

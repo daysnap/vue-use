@@ -1,4 +1,4 @@
-import { isBoolean, isUndefined } from '@daysnap/utils'
+import { isNumber, isUndefined } from '@daysnap/utils'
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
@@ -8,7 +8,7 @@ export interface UseKeepAliveState {
   mode: 'auto' | 'custom'
   relations?: string[] // 关联的路由 如果是一个路由有子路由 则需要关联下子路由name
 }
-export type UseKeepAliveOptions = Partial<Omit<UseKeepAliveState, 'position'>> | boolean
+export type UseKeepAliveOptions = Partial<Omit<UseKeepAliveState, 'position'>> | number
 
 const keepAliveList = ref<UseKeepAliveState[]>()
 // fix 解决 transform keep-alive bug 问题
@@ -50,13 +50,18 @@ export function useKeepAlive(options?: UseKeepAliveOptions) {
       },
     )
 
+    const ms = isNumber(options) ? options : 0
+    console.log('ms111 => ', ms, options, isNumber(options))
+
     watch(
       () => keepAliveList.value,
       (nv, ov) => {
         if (JSON.stringify(nv) !== JSON.stringify(ov)) {
+          console.log('11 => ', ms, options)
           setTimeout(() => {
+            console.log('22 => ', ms, options)
             includes.value = keepAliveList.value?.map((item) => item.name) ?? []
-          }, 300)
+          }, ms)
         }
       },
       {
@@ -65,7 +70,7 @@ export function useKeepAlive(options?: UseKeepAliveOptions) {
     )
   }
 
-  if (!isBoolean(options)) {
+  if (!isNumber(options)) {
     const { meta, ...rest } = useRoute()
     const { name, mode, relations } = Object.assign({ mode: 'auto' } as const, rest, meta, options)
     const { position = 0 } = getHistoryState()

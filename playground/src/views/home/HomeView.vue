@@ -1,5 +1,5 @@
 <template>
-  <HorView :left-arrow="false"></HorView>
+  <div :left-arrow="false"></div>
 </template>
 
 <script setup lang="ts"></script>

@@ -4,4 +4,6 @@
 
 ```
 pnpm install
+
+pnpm up @daysnap/utils --latest -r
 ```

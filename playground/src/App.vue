@@ -15,7 +15,7 @@
 <script setup lang="ts">
   import { useTransitionName, useKeepAlive } from '@daysnap/vue-use'
 
-  const { includes } = useKeepAlive(false)
+  const { includes } = useKeepAlive(300)
 
   const transitionName = useTransitionName({
     enterClass: 'slide-plus-left',
