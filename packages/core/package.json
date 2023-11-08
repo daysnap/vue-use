@@ -41,6 +41,7 @@
     "vue-router": ">=4.2.4"
   },
   "devDependencies": {
+    "@daysnap/types": "^0.0.4",
     "node-dir": "^0.1.17",
     "plop": "^3.1.2",
     "typescript": "^5.2.2"
