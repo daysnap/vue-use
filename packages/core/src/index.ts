@@ -1,12 +1,13 @@
 /* 本文件自动生成 './scripts/entry.js' */
 
-export * from './types'
 export * from './debounceRef'
+export * from './types'
+export * from './useAsyncTask'
 export * from './useComposition'
 export * from './useCountDown'
 export * from './useEventListener'
 export * from './useKeepAlive'
-// export * from './useKeepAliveByPosition'
+export * from './useKeepAliveByPosition'
 export * from './useKeepPosition'
 export * from './usePaging'
 export * from './useParams'
