@@ -18,6 +18,6 @@ export default defineRoutes([
     path: '/demo/use-async-task',
     name: 'UseAsyncTaskView',
     component: () => import(`@/views/demo/use-async-task/UseAsyncTaskView.vue`),
-    meta: { title: 'UseAsyncTaskView' },
+    meta: { title: 'UseAsyncTask' },
   },
 ])

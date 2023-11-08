@@ -1,6 +1,6 @@
 import { useRouter } from 'vue-router'
 
-interface TransferOptions {
+export interface TransferOptions {
   disabled?: boolean
   replace?: boolean
   query?: Record<string, any>

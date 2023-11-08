@@ -1,22 +1,25 @@
 <template>
-  <div class="demo-wrap">
+  <div>
     <br />
-    <input v-model="value" />
-    <p>value => {{ value }}</p>
-    <br />
-    <RouterLink to="/demo/use-keep-alive">push 去 UseKeepAlive</RouterLink>
-    <br />
-    <RouterLink to="/demo/use-keep-alive" replace>replace 去 UseKeepAlive</RouterLink>
+    <HorCellGroup>
+      <HorCell
+        v-for="(item, index) in demos"
+        :key="index"
+        :label="item.meta?.title"
+        arrow
+        @click="$router.push(item.path)"
+      />
+    </HorCellGroup>
   </div>
 </template>
 
 <script setup lang="ts">
-  const value = ref('')
-</script>
+  const router = useRouter()
 
-<style lang="scss" scoped>
-  @import '@/assets/scss/define.scss';
-  .demo-wrap {
-    background-color: rgb(0, 221, 255);
-  }
-</style>
+  const demos = computed(() => {
+    return router.options.routes.filter((item) => {
+      const { path } = item
+      return path.startsWith('/demo/') && path.split('/').length === 3
+    })
+  })
+</script>

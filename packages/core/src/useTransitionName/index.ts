@@ -7,7 +7,7 @@ export interface UseTransitionNameOptions {
   deep?: boolean
 }
 
-interface UseTransitionNameState {
+export interface UseTransitionNameState {
   position: number
   fullPath: string
 }

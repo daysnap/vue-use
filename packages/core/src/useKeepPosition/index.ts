@@ -2,11 +2,11 @@ import { pick } from '@daysnap/utils'
 import { onActivated, nextTick, ref } from 'vue'
 import { onBeforeRouteLeave } from 'vue-router'
 
-interface UseKeepPositionOptions {
+export interface UseKeepPositionOptions {
   getTarget?: () => HTMLElement
 }
 
-interface UseKeepPositionState {
+export interface UseKeepPositionState {
   scrollLeft: number
   scrollTop: number
 }

@@ -1,4 +1,4 @@
-interface UseAsyncTaskOptions {}
+export interface UseAsyncTaskOptions {}
 
 export const useAsyncTask = (
   options?: UseAsyncTaskOptions
