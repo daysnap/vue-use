@@ -18,7 +18,7 @@ module.exports = (plop) => {
         type: 'input',
         name: 'name',
         message: '请输入名称？',
-        filter: (v) => (v.toLocaleLowerCase().startsWith('use') ? v : `use-${v}`),
+        // filter: (v) => (v.toLocaleLowerCase().startsWith('use') ? v : `use-${v}`),
       },
     ],
     actions: [

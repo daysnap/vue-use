@@ -3,10 +3,26 @@ import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
 export interface UseKeepAliveState {
+  /**
+   * Route name 和 Component name 要保证一致，不然缓存会失败
+   */
   name: string
+
+  /**
+   * vue-router history.state.position
+   * https://router.vuejs.org/zh/api/interfaces/RouterHistory.html#Properties-state
+   */
   position: number
+
+  /**
+   * 模式，如果是 auto 则自动会管理，如果设置的是 custom 则需要手动管理
+   */
   mode: 'auto' | 'custom'
-  relations?: string[] // 关联的路由 如果是一个路由有子路由 则需要关联下子路由name
+
+  /**
+   * 关联的路由 如果是一个路由有子路由 则需要关联下子路由name
+   */
+  relations?: string[]
 }
 export type UseKeepAliveOptions = Partial<Omit<UseKeepAliveState, 'position'>> | number
 
@@ -16,6 +32,9 @@ const keepAliveList = ref<UseKeepAliveState[]>()
 const includes = ref<string[]>([])
 const getHistoryState = () => history.state ?? {}
 
+/**
+ * 结合 KeepAlive 组件，维护其 includes
+ */
 export function useKeepAlive(options?: UseKeepAliveOptions) {
   if (isUndefined(keepAliveList.value)) {
     keepAliveList.value = []
@@ -83,5 +102,3 @@ export function useKeepAlive(options?: UseKeepAliveOptions) {
     includes,
   }
 }
-
-export const useKeepAliveByPosition = useKeepAlive

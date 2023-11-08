@@ -33,6 +33,10 @@ const includes = computed(() => keepAliveList.value!.map((item) => item.name))
 
 const getState = () => history.state ?? {}
 
+/**
+ * 结合 KeepAlive 组件，维护其 includes
+ * @deprecated 目前因为有路由会产生BUG，已经过期，后期版本会删除掉，请使用 useKeepAlive 方法
+ */
 export function useKeepAliveByPosition(options?: UseKeepAliveByPositionOptions) {
   if (isUndefined(keepAliveList.value)) {
     keepAliveList.value = []
