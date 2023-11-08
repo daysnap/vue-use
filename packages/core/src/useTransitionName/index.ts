@@ -2,8 +2,16 @@ import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
 export interface UseTransitionNameOptions {
+  /**
+   * 进入动画样式
+   */
   enterClass?: string
+
+  /**
+   * 离开动画样式
+   */
   leaveClass?: string
+
   deep?: boolean
 }
 
@@ -13,7 +21,6 @@ export interface UseTransitionNameState {
 }
 
 const KEY = '$$useTransitionName__state'
-
 const get = () => {
   let res: UseTransitionNameState | undefined
   try {
@@ -27,6 +34,9 @@ const set = (state: UseTransitionNameState) => {
   window.sessionStorage.setItem(KEY, JSON.stringify(state))
 }
 
+/**
+ * 配合 Transition 动画
+ */
 export function useTransitionName(options: UseTransitionNameOptions) {
   const { deep } = options
   const name = ref('')
