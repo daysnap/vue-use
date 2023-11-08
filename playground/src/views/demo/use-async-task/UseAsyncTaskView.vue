@@ -23,12 +23,16 @@
     </dl>
     <br />
     <VanButton @click="trigger()" :loading="loading">执行</VanButton>
+    <br />
+    <RouterLink to="/demo/use-keep-alive/push">Push Info</RouterLink>
   </HorView>
 </template>
 
 <script setup lang="ts">
   import { sleep } from '@daysnap/utils'
-  import { useAsyncTask } from '@daysnap/vue-use'
+  import { useAsyncTask, useKeepAlive } from '@daysnap/vue-use'
+
+  useKeepAlive()
 
   const throwError = ref(false)
   const isError = ref(false)
@@ -46,7 +50,3 @@
     },
   )
 </script>
-
-<style lang="scss" scoped>
-  @import '@/assets/scss/define.scss';
-</style>

@@ -1,12 +1,17 @@
 import { isFunction } from '@daysnap/utils'
 import type { AnyPromiseFn } from '@daysnap/types'
-import { onBeforeMount, ref, type Ref } from 'vue'
+import { onActivated, onBeforeMount, ref, type Ref } from 'vue'
 
 export interface UseAsyncTaskOptions<T extends AnyPromiseFn> {
   /**
    * 是否立即执行 onBeforeMount 执行，默认 false
    */
   immediate?: boolean
+
+  /**
+   * 是否在 onActivated 执行，默认 false
+   */
+  activated?: boolean
 
   /**
    * 立即执行的时候 第一次需要传递的参数
@@ -33,7 +38,7 @@ export interface UseAsyncTaskOptions<T extends AnyPromiseFn> {
  * 异步任务执行
  */
 export function useAsyncTask<T extends AnyPromiseFn>(task: T, options?: UseAsyncTaskOptions<T>) {
-  const { initialValue, immediate, throwError, onError, immediateParams } = options ?? {}
+  const { initialValue, immediate, activated, throwError, onError, immediateParams } = options ?? {}
 
   const data = ref(initialValue) as Ref<Awaited<ReturnType<T>>>
   const error = ref<unknown>()
@@ -59,6 +64,13 @@ export function useAsyncTask<T extends AnyPromiseFn>(task: T, options?: UseAsync
 
   onBeforeMount(async () => {
     if (immediate) {
+      const args = isFunction(immediateParams) ? immediateParams() : immediateParams ?? []
+      await trigger(...(args as any))
+    }
+  })
+
+  onActivated(async () => {
+    if (activated) {
       const args = isFunction(immediateParams) ? immediateParams() : immediateParams ?? []
       await trigger(...(args as any))
     }
