@@ -1,7 +1,7 @@
 import { customRef } from 'vue'
 
 export function debounceRef<T = any>(value: T, ms = 0) {
-  let timer: number
+  let timer: any
   return customRef((track, trigger) => {
     return {
       get() {
@@ -9,8 +9,8 @@ export function debounceRef<T = any>(value: T, ms = 0) {
         return value
       },
       set(val) {
-        window.clearTimeout(timer)
-        timer = window.setTimeout(() => {
+        clearTimeout(timer)
+        timer = setTimeout(() => {
           trigger()
           value = val
         }, ms)

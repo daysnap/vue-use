@@ -1,10 +1,10 @@
 import { ref } from 'vue'
 
-export function useCountDown(start?: number) {
+export function useCountDown(start: number = 60) {
   const countRef = ref(0)
-  let timer: any = null
+  let timer: any
 
-  const trigger = (st?: number) => {
+  const trigger = (st: number = start) => {
     clearTimeout(timer)
 
     let loop: any
@@ -16,7 +16,7 @@ export function useCountDown(start?: number) {
       }
       count--
       timer = setTimeout(loop, 1000, count)
-    })(st ?? start ?? 60)
+    })(st)
   }
 
   return [countRef, trigger] as const
