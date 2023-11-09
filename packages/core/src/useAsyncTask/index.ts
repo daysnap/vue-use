@@ -44,11 +44,12 @@ export function useAsyncTask<T extends AnyPromiseFn>(task: T, options?: UseAsync
   const error = ref<unknown>()
   const loading = ref(false)
 
-  const trigger = async (...args: Parameters<T>) => {
+  const trigger = (async (...args: unknown[]) => {
     try {
       error.value = undefined
       loading.value = true
       data.value = await task(...args)
+      return data.value
     } catch (err) {
       if ((await onError?.(err)) ?? true) {
         error.value = err
@@ -60,7 +61,7 @@ export function useAsyncTask<T extends AnyPromiseFn>(task: T, options?: UseAsync
     } finally {
       loading.value = false
     }
-  }
+  }) as T
 
   onBeforeMount(async () => {
     if (immediate) {
