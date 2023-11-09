@@ -45,6 +45,7 @@
       return Date.now()
     },
     {
+      initialValue: 1,
       immediate: true,
       throwError: () => throwError.value,
     },

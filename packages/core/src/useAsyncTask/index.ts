@@ -34,9 +34,24 @@ export interface UseAsyncTaskOptions<T extends AnyPromiseFn> {
   onError?: (err: unknown) => boolean | undefined | Promise<boolean | undefined>
 }
 
+export interface UseAsyncTaskResult<F, D> {
+  data: Ref<D>
+  error: Ref<unknown>
+  loading: Ref<boolean>
+  trigger: F
+}
+
 /**
  * 异步任务执行
  */
+export function useAsyncTask<T extends AnyPromiseFn>(
+  task: T,
+  options: UseAsyncTaskOptions<T> & Required<Pick<UseAsyncTaskOptions<T>, 'initialValue'>>,
+): UseAsyncTaskResult<T, Awaited<ReturnType<T>>>
+export function useAsyncTask<T extends AnyPromiseFn>(
+  task: T,
+  options?: UseAsyncTaskOptions<T>,
+): UseAsyncTaskResult<T, Awaited<ReturnType<T>> | undefined>
 export function useAsyncTask<T extends AnyPromiseFn>(task: T, options?: UseAsyncTaskOptions<T>) {
   const { initialValue, immediate, activated, throwError, onError, immediateParams } = options ?? {}
 
@@ -44,7 +59,7 @@ export function useAsyncTask<T extends AnyPromiseFn>(task: T, options?: UseAsync
   const error = ref<unknown>()
   const loading = ref(false)
 
-  const trigger = (async (...args: unknown[]) => {
+  const trigger = async (...args: unknown[]) => {
     try {
       error.value = undefined
       loading.value = true
@@ -61,7 +76,7 @@ export function useAsyncTask<T extends AnyPromiseFn>(task: T, options?: UseAsync
     } finally {
       loading.value = false
     }
-  }) as T
+  }
 
   onBeforeMount(async () => {
     if (immediate) {
