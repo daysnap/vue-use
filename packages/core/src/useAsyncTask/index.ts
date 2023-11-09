@@ -16,7 +16,7 @@ export interface UseAsyncTaskOptions<T extends AnyPromiseFn> {
   /**
    * 立即执行的时候 第一次需要传递的参数
    */
-  immediateParams?: Parameters<T> | (() => Parameters<T>)
+  initialParams?: Parameters<T> | (() => Parameters<T>)
 
   /**
    * 初始数据
@@ -34,11 +34,11 @@ export interface UseAsyncTaskOptions<T extends AnyPromiseFn> {
   onError?: (err: unknown) => boolean | undefined | Promise<boolean | undefined>
 }
 
-export interface UseAsyncTaskResult<F, D> {
+export interface UseAsyncTaskResult<T, D> {
   data: Ref<D>
   error: Ref<unknown>
   loading: Ref<boolean>
-  trigger: F
+  trigger: T
 }
 
 /**
@@ -53,7 +53,7 @@ export function useAsyncTask<T extends AnyPromiseFn>(
   options?: UseAsyncTaskOptions<T>,
 ): UseAsyncTaskResult<T, Awaited<ReturnType<T>> | undefined>
 export function useAsyncTask<T extends AnyPromiseFn>(task: T, options?: UseAsyncTaskOptions<T>) {
-  const { initialValue, immediate, activated, throwError, onError, immediateParams } = options ?? {}
+  const { initialValue, immediate, activated, throwError, onError, initialParams } = options ?? {}
 
   const data = ref(initialValue) as Ref<Awaited<ReturnType<T>>>
   const error = ref<unknown>()
@@ -78,17 +78,20 @@ export function useAsyncTask<T extends AnyPromiseFn>(task: T, options?: UseAsync
     }
   }
 
+  const init = async () => {
+    const args = isFunction(initialParams) ? initialParams() : initialParams ?? []
+    await trigger(...(args as any))
+  }
+
   onBeforeMount(async () => {
     if (immediate) {
-      const args = isFunction(immediateParams) ? immediateParams() : immediateParams ?? []
-      await trigger(...(args as any))
+      await init()
     }
   })
 
   onActivated(async () => {
     if (activated) {
-      const args = isFunction(immediateParams) ? immediateParams() : immediateParams ?? []
-      await trigger(...(args as any))
+      await init()
     }
   })
 

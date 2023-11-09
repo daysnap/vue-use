@@ -1,6 +1,6 @@
 {
   "name": "@daysnap/vue-use",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "daysnap vue hooks",
   "main": "src/index.ts",
   "types": "src/index.ts",
@@ -18,6 +18,17 @@
     "release": "npm run entry && npm run build && dsc publish --pnpm -t && dsc sync"
   },
   "publishConfig": {
+    "main": "lib/index.js",
+    "module": "es/index.js",
+    "types": "es/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./es/index.d.ts",
+        "import": "./es/index.js",
+        "require": "./lib/index.js"
+      },
+      "./*": "./*"
+    },
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
@@ -38,15 +49,13 @@
   "license": "MIT",
   "peerDependencies": {
     "vue": ">=3.0.0",
-    "vue-router": ">=4.2.4"
+    "vue-router": ">=4.2.4",
+    "@daysnap/utils": ">=0.0.66"
   },
   "devDependencies": {
     "@daysnap/types": "^0.0.4",
     "node-dir": "^0.1.17",
     "plop": "^3.1.2",
     "typescript": "^5.2.2"
-  },
-  "dependencies": {
-    "@daysnap/utils": "^0.0.66"
   }
 }
