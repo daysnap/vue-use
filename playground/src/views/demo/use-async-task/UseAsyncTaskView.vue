@@ -23,16 +23,12 @@
     </dl>
     <br />
     <VanButton @click="trigger()" :loading="loading">执行</VanButton>
-    <br />
-    <RouterLink to="/demo/use-keep-alive/push">Push Info</RouterLink>
   </HorView>
 </template>
 
 <script setup lang="ts">
   import { sleep } from '@daysnap/utils'
-  import { useAsyncTask, useKeepAlive } from '@daysnap/vue-use'
-
-  useKeepAlive()
+  import { useAsyncTask } from '@daysnap/vue-use'
 
   const throwError = ref(false)
   const isError = ref(false)
