@@ -25,8 +25,19 @@ export interface UsePagingTask<T = any> {
 }
 
 export interface UsePagingOptions {
+  /**
+   * 初始化的状态
+   */
   initialStatus?: Partial<UsePagingStatus>
+
+  /**
+   * 是否立即执行 onBeforeMount 执行，默认 false
+   */
   immediate?: boolean
+
+  /**
+   * 需要滚动的元素 默认 .hor-scroll
+   */
   scrollSelector?: string
 }
 

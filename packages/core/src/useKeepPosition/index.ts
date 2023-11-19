@@ -3,6 +3,14 @@ import { onActivated, nextTick, ref } from 'vue'
 import { onBeforeRouteLeave } from 'vue-router'
 
 export interface UseKeepPositionOptions {
+  /**
+   * 获取需要恢复位置的元素
+   */
+  selectors?: string
+
+  /**
+   * 获取需要恢复位置的元素
+   */
   getTarget?: () => HTMLElement
 }
 
@@ -11,8 +19,8 @@ export interface UseKeepPositionState {
   scrollTop: number
 }
 
-export function useKeepPosition(options?: UseKeepPositionOptions) {
-  const { getTarget = () => document.documentElement } = options ?? {}
+export function useKeepPosition(options: UseKeepPositionOptions = {}) {
+  const { getTarget = () => document.documentElement, selectors } = options
   const state = ref<UseKeepPositionState>()
   // 保存位置
   const keep = () => {
@@ -25,7 +33,9 @@ export function useKeepPosition(options?: UseKeepPositionOptions) {
   // 恢复
   const restore = () => {
     nextTick(() => {
-      const target = getTarget()
+      const target =
+        getTarget?.() ?? (selectors ? document.querySelector(selectors) : document.documentElement)
+
       if (target) {
         const { scrollLeft = 0, scrollTop = 0 } = state.value ?? {}
         state.value = undefined
