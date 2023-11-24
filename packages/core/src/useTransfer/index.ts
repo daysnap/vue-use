@@ -36,7 +36,7 @@ export function useTransfer() {
     }
 
     if (to) {
-      router.push({ path, replace, ...rest })
+      router.push(to)
       return
     }
 
