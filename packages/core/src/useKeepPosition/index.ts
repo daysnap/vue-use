@@ -20,11 +20,18 @@ export interface UseKeepPositionState {
 }
 
 export function useKeepPosition(options: UseKeepPositionOptions = {}) {
-  const { getTarget = () => document.documentElement, selectors } = options
+  const { selectors } = options
   const state = ref<UseKeepPositionState>()
+
+  // 获取需要恢复位置的元素
+  const getTarget = () =>
+    options.getTarget?.() ??
+    (selectors ? document.querySelector(selectors) : document.documentElement)
+
   // 保存位置
   const keep = () => {
     const target = getTarget()
+
     if (target) {
       state.value = pick(target, ['scrollTop', 'scrollLeft'])
     }
@@ -33,8 +40,7 @@ export function useKeepPosition(options: UseKeepPositionOptions = {}) {
   // 恢复
   const restore = () => {
     nextTick(() => {
-      const target =
-        getTarget?.() ?? (selectors ? document.querySelector(selectors) : document.documentElement)
+      const target = getTarget()
 
       if (target) {
         const { scrollLeft = 0, scrollTop = 0 } = state.value ?? {}
