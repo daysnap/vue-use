@@ -3,9 +3,7 @@
 > useCountdown(start?: number)
 
 ```ts
-function useCountdown(
-  start?: number
-): [Ref<number>, (start?: number) => void]
+function useCountdown(start?: number): [Ref<number>, (start?: number) => void]
 ```
 
 ### 功能描述
@@ -14,7 +12,7 @@ function useCountdown(
 
 ### 示例代码
 
-<demo></demo> 
+<demo></demo>
 
 <script lang="ts" setup>
   import Demo from './demo.vue'

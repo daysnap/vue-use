@@ -8,7 +8,7 @@
 
 ### 示例代码
 
-<demo></demo> 
+<demo></demo>
 
 <script lang="ts" setup>
   import Demo from './demo.vue'

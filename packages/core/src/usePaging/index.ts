@@ -6,6 +6,7 @@ export interface UsePagingStatus {
   pagingSize: number
   pagingTotal: number
   pagingError: string
+  pagingLoading: boolean
 }
 
 export type UsePagingTaskResult<T = any> =
@@ -52,6 +53,7 @@ export function usePaging<T = any>(task: UsePagingTask<T>, options: UsePagingOpt
         pagingSize: 10,
         pagingTotal: -1,
         pagingError: '',
+        pagingLoading: '',
       },
       initialStatus,
     ),
@@ -78,6 +80,7 @@ export function usePaging<T = any>(task: UsePagingTask<T>, options: UsePagingOpt
     pagingStatus.pagingIndex = 0
     pagingStatus.pagingTotal = -1
     pagingStatus.pagingError = ''
+    pagingStatus.pagingLoading = false
     pagingData.value = []
   }
 
@@ -97,6 +100,10 @@ export function usePaging<T = any>(task: UsePagingTask<T>, options: UsePagingOpt
       setTimeout(scrollTop)
     }
 
+    // loading
+    pagingStatus.pagingLoading = true
+    pagingStatus.pagingError = ''
+
     // fetch data
     const promise: any = task([pagingIndex, pagingStatus.pagingSize], opt).then((res) => {
       let pagingList: T[] = []
@@ -111,7 +118,6 @@ export function usePaging<T = any>(task: UsePagingTask<T>, options: UsePagingOpt
         pagingList = []
       }
 
-      pagingStatus.pagingError = ''
       pagingStatus.pagingIndex = pagingIndex
       pagingStatus.pagingTotal = pagingTotal
       pagingData.value = pagingIndex === 1 ? pagingList : [...pagingData.value, ...pagingList]
@@ -132,6 +138,8 @@ export function usePaging<T = any>(task: UsePagingTask<T>, options: UsePagingOpt
           pagingStatus.pagingError = isString(err) ? err : JSON.stringify(err)
         })
     ).finally(() => {
+      pagingStatus.pagingLoading = false
+
       if (isFunction(options)) {
         options(pagingStatus.pagingError)
       }

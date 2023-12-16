@@ -4,16 +4,12 @@
 
 ```ts
 type Options = {
-  target?: EventTarget | Ref<EventTarget>;
-  capture?: boolean;
-  passive?: boolean;
-};
+  target?: EventTarget | Ref<EventTarget>
+  capture?: boolean
+  passive?: boolean
+}
 
-function useEventListener(
-  type: string,
-  listener: EventListener,
-  options?: Options
-): void;
+function useEventListener(type: string, listener: EventListener, options?: Options): void
 ```
 
 ### 功能描述
@@ -22,7 +18,7 @@ function useEventListener(
 
 ### 示例代码
 
-<demo></demo> 
+<demo></demo>
 
 <script lang="ts" setup>
   import Demo from './demo.vue'
