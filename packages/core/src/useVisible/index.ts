@@ -48,8 +48,8 @@ export function useVisible<T extends Record<string, any>, R = any>(
     if (!result) {
       return
     }
-    reject = null
     const value = confirmCallback ? await confirmCallback(...args) : args[0]
+    reject = null
     resolve?.(value)
     visible.value = false
   }
